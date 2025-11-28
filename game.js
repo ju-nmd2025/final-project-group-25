@@ -23,11 +23,11 @@ function draw() {
 	platform.draw();
 
     if (character.y+character.h < 250){
-    platform.y += 3;
-    if(platform.y + platform.h > 400){
+    platform.y += 5 ;
+    if(platform.y + platform.h > 400){  
         platform.y = 0;
     }
-}
+    }
 
     if(character.y + character.h < 300){
         character.y += 10;
@@ -39,7 +39,13 @@ function draw() {
 
 
 function keyPressed(){
-    if(character.y + character.h === 300){
-        character.y -= 80;
+    if(key==" " &&character.y + character.h === 300){
+        character.y -= 150;
+    }
+    if(keyCode === LEFT_ARROW || key=="a"){
+        character.x -= 20;
+    }
+    if(keyCode === RIGHT_ARROW || key=="d"){
+        character.x += 20;
     }
 }
