@@ -4,6 +4,7 @@ export function createPlatform(x, y) {
     y,
     w: 80,
     h: 20,
+
     draw() {
       push();
       fill("green");
