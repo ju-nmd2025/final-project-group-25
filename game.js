@@ -1,4 +1,4 @@
-import { character } from "./character";
+import { character } from "./character.js";
 import { createPlatform, platforms } from "./platform.js";
 
 function setup() {
@@ -22,18 +22,15 @@ function drawObstacle() {
 function draw() {
   background(100, 100, 100);
 
-  character.draw();
-
-  // Draw all platforms
-  platforms.forEach((platform) => platform.draw());
-
   //Move all platforms
   platforms.forEach((platform) => {
+    platform.draw();
     platform.x -= 10;
     if (platform.x + platform.w < 0) {
       platform.x = width;
     }
   });
+  character.draw();
 
   // character gravity
   if (character.y + character.h < 300) {

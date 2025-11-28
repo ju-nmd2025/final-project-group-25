@@ -1,11 +1,9 @@
-// Function to create a single platform
 export function createPlatform(x, y) {
   return {
     x,
     y,
     w: 80,
     h: 20,
-
     draw() {
       push();
       fill("green");
