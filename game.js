@@ -17,7 +17,7 @@ let x = 100;
 let y = 100;
 
 let goingUp = true;
-let speed = 6;        // smaller = smoother
+let speed = 8;        // smaller = smoother
 let jumpPeak = 100;   // how high the jump goes
 let groundY = 300;    // ground position
 
@@ -36,6 +36,15 @@ function draw() {
         character.x += 4;
     }
 
+    if (character.x < -25) {
+        character.x = 375;
+    }
+    if (character.x > 375) {
+        character.x = -25;
+    }
+
+
+    // Platform movement
     if (character.y+character.h < 250){
     platform.y += 5 ;
     if(platform.y + platform.h > 400){  
