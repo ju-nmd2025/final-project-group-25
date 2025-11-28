@@ -5,9 +5,9 @@ function setup() {
   createCanvas(400, 400);
 
   // multiple platforms setup
-  platforms.push(createPlatform(100, 400));
-  platforms.push(createPlatform(200, 300));
-  platforms.push(createPlatform(300, 200));
+  platforms.push(createPlatform(100, 350));
+  platforms.push(createPlatform(200, 250));
+  platforms.push(createPlatform(300, 150));
   platforms.push(createPlatform(150, 100));
 }
 
@@ -18,9 +18,6 @@ function drawObstacle() {
   triangle(180, 300, 210, 240, 240, 300);
   pop();
 }
-
-let x = 100;
-let y = 100;
 
 function draw() {
   background(100, 100, 100);
@@ -34,7 +31,7 @@ function draw() {
   platforms.forEach((platform) => {
     platform.x -= 10;
     if (platform.x + platform.w < 0) {
-      platform.x = 500;
+      platform.x = width;
     }
   });
 
