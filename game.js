@@ -30,6 +30,7 @@ function draw() {
       platform.x = width;
     }
   });
+
   character.draw();
 
   // character gravity
@@ -38,6 +39,7 @@ function draw() {
   }
 
   // Floor
+  stroke(255);
   line(0, 300, 400, 300);
 }
 
