@@ -22,9 +22,9 @@ function draw() {
     character.draw();
 	platform.draw();
 
-    platform.x -= 10;
-    if(platform.x + platform.w < 0){
-        platform.x = 500;
+    platform.y += 5;
+    if(platform.y + platform.h > 400){
+        platform.y = 0;
     }
 
     if(character.y + character.h < 300){
@@ -34,6 +34,7 @@ function draw() {
     // Floor
     line(0, 300, 400, 300);
 }
+
 
 function keyPressed(){
     if(character.y + character.h === 300){
