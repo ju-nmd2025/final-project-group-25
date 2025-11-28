@@ -22,6 +22,14 @@ function draw() {
     character.draw();
 	platform.draw();
 
+    // Smooth left/right movement
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {   // 'a'
+        character.x -= 4;
+    }
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {  // 'd'
+        character.x += 4;
+    }
+
     if (character.y+character.h < 250){
     platform.y += 5 ;
     if(platform.y + platform.h > 400){  
@@ -41,11 +49,5 @@ function draw() {
 function keyPressed(){
     if(key==" " &&character.y + character.h === 300){
         character.y -= 150;
-    }
-    if(keyCode === LEFT_ARROW || key=="a"){
-        character.x -= 20;
-    }
-    if(keyCode === RIGHT_ARROW || key=="d"){
-        character.x += 20;
     }
 }
