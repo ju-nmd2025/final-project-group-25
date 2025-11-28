@@ -22,10 +22,12 @@ function draw() {
     character.draw();
 	platform.draw();
 
-    platform.y += 5;
+    if (character.y+character.h < 250){
+    platform.y += 3;
     if(platform.y + platform.h > 400){
         platform.y = 0;
     }
+}
 
     if(character.y + character.h < 300){
         character.y += 10;
