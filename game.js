@@ -16,6 +16,12 @@ function drawObstacle() {
 let x = 100;
 let y = 100;
 
+let goingUp = true;
+let speed = 6;        // smaller = smoother
+let jumpPeak = 100;   // how high the jump goes
+let groundY = 300;    // ground position
+
+
 function draw() {
     background(100, 100, 100);
 
@@ -37,17 +43,40 @@ function draw() {
     }
     }
 
-    if(character.y + character.h < 300){
-        character.y += 10;
+    // Automatic smooth jump
+if (goingUp) {
+    character.y -= speed;
+
+    // Reached top of jump?
+    if (character.y + character.h <= jumpPeak) {
+        goingUp = false; // start going down
     }
+} else {
+    character.y += speed;
+
+    // Reached ground?
+    if (character.y + character.h >= groundY) {
+        character.y = groundY - character.h; // stay on ground
+        goingUp = true;                      // start going up again
+    }
+}
+
+    // if(character.y + character.h >= 300){
+    //     if(character.y + character.h > 100){
+    //     character.y -= 10;
+    //     }
+    // }
+    // if(character.y + character.h < 300){
+    //     character.y += 10;
+    // }
 
     // Floor
     line(0, 300, 400, 300);
 }
 
 
-function keyPressed(){
-    if(key==" " &&character.y + character.h === 300){
-        character.y -= 150;
-    }
-}
+//function keyPressed(){
+//    if(key==" " &&character.y + character.h === 300){
+//        character.y -= 150;
+//    }
+//}
