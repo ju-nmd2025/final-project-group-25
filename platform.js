@@ -1,13 +1,21 @@
-export let platform = {
-    x: 250,
-    y: 250,
-    w: 80,
-    h: 20,
+export class platform {
+    constructor(x,y,w,h){
+        this.x = x;
+        this.y = y;
+        this.w = w;
+        this.h = h;
+        this.speed = 5;
+    }
 
     draw() {
         push();
         fill("blue");
         rect(this.x, this.y, this.w, this.h);
         pop();
-    },
+    }
+
+    update(){
+        this.y += this.speed;
+        this.draw();
+    }
 };

@@ -5,13 +5,7 @@ function setup() {
     createCanvas(400, 400);
 }
 
-// Obstacle / Spike / Death
-function drawObstacle() {
-    push();
-    fill("red");
-    triangle(180, 300, 210, 240, 240, 300);
-    pop();
-}
+let platforms = {new platform(150,380,80,20),new platform(150,280,80,20),new platform(random(0,400),180,80,20),new platform(random(0,400),80,80,20)};
 
 let x = 100;
 let y = 100;
@@ -20,14 +14,19 @@ function draw() {
     background(100, 100, 100);
 
     character.draw();
-	platform.draw();
+	
+    //platform draw
+    for(let p of platforms){
+        p.draw();
+    }
 
-    if (character.y+character.h < 250){
-    platform.y += 5 ;
-    if(platform.y + platform.h > 400){  
-        platform.y = 0;
-    }
-    }
+    
+    // if (character.y+character.h < 250){
+    // platform.y += 5 ;
+    // if(platform.y + platform.h > 400){  
+    //     platform.y = 0;
+    // }
+    // }
 
     if(character.y + character.h < 300){
         character.y += 10;
@@ -39,9 +38,12 @@ function draw() {
 
 
 function keyPressed(){
+    // Jump
     if(key==" " &&character.y + character.h === 300){
         character.y -= 150;
     }
+
+    // Move left and right
     if(keyCode === LEFT_ARROW || key=="a"){
         character.x -= 20;
     }
