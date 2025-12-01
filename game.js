@@ -29,16 +29,13 @@ function draw() {
 
     //new platforms
     newPlatform();
-    // if (character.y+character.h < 250){
-    // platform.y += 5 ;
-    // if(platform.y + platform.h > 400){  
-    //     platform.y = 0;
-    // }
-    // }
 
     if(character.y + character.h < 300){
         character.y += 10;
     }
+
+    //platform collision
+    platformCollision();
 
     // Floor
     line(0, 300, 400, 300);
@@ -49,6 +46,17 @@ function newPlatform(){
         platforms.shift();
         platforms.push(new platform(random(0,320),-20,80,20));
     }
+}
+
+function platformCollision(){
+    for(let p of platforms){
+        let isXColliding = character.x+character.w>=p.x && character.x<=p.x+p.w;
+        let isYColliding = character.y+character.h>=p.y && character.y+character.h<=p.y+10;
+
+        if(isXColliding && isYColliding){
+            character.y = p.y - character.h;
+        }
+}
 }
 
 function keyPressed(){
