@@ -26,6 +26,9 @@ function draw() {
             p.update();
         }
     }
+
+    //new platforms
+    newPlatform();
     // if (character.y+character.h < 250){
     // platform.y += 5 ;
     // if(platform.y + platform.h > 400){  
@@ -41,6 +44,12 @@ function draw() {
     line(0, 300, 400, 300);
 }
 
+function newPlatform(){
+    if(platforms[0].y>380){
+        platforms.shift();
+        platforms.push(new platform(random(0,320),-20,80,20));
+    }
+}
 
 function keyPressed(){
     // Jump
