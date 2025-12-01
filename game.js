@@ -5,7 +5,7 @@ function setup() {
     createCanvas(400, 400);
 }
 
-let platforms = {new platform(150,380,80,20),new platform(150,280,80,20),new platform(random(0,400),180,80,20),new platform(random(0,400),80,80,20)};
+let platforms = [new platform(150,380,80,20),new platform(150,280,80,20),new platform(random(0,320),180,80,20),new platform(random(0,320),80,80,20)];
 
 let x = 100;
 let y = 100;
@@ -20,7 +20,12 @@ function draw() {
         p.draw();
     }
 
-    
+    //platform movement
+    if(character.y + character.h < 250){
+        for(let p of platforms){
+            p.update();
+        }
+    }
     // if (character.y+character.h < 250){
     // platform.y += 5 ;
     // if(platform.y + platform.h > 400){  
