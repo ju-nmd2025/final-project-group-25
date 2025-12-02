@@ -4,8 +4,8 @@ export let character = {
   w: 50,
   h: 50,
   vy:0,
-  gravity:0.4,
-  jumpforce:-10,
+  gravity:0.3,
+  jumpforce:-11,
   onGround:false,
 
   draw() {

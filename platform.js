@@ -4,7 +4,7 @@ export class platform {
         this.y = y;
         this.w = w;
         this.h = h;
-        this.speed = 5;
+        this.speed = 3;
     }
 
     draw() {
