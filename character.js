@@ -3,6 +3,10 @@ export let character = {
   y: 300,
   w: 50,
   h: 50,
+  vy:0,
+  gravity:0.4,
+  jumpforce:-10,
+  onGround:false,
 
   draw() {
     push();
@@ -61,6 +65,25 @@ export let character = {
     rect(this.x - 1, this.y - this.h - 8, this.w + 4, 12);
 
     pop();
+  },
+
+  //automatic jumping
+  jump(){
+    if(this.onGround){
+      this.vy = this.jumpforce;
+      this.onGround = false;
+    }
+  },
+
+  //gravity and ground collision
+  update(){
+    this.vy += this.gravity;
+    this.y += this.vy;
+    if(this.y + this.h >= height){
+      this.y = height - this.h;
+      this.vy = 0;
+      this.onGround = true;
+    }
   },
 };
 
