@@ -7,8 +7,7 @@ export let character = {
   vx: 0,
   speed: 3,
   gravity: 0.4,
-  jumpforce: -7,
-  onGround: false,
+  jumpforce: -11,
 
   draw() {
     push();
@@ -69,11 +68,10 @@ export let character = {
     pop();
   },
 
-  //automatic jumping
+  //Manual jump function
   jump() {
-    if (this.onGround) {
+    if (this.vy === 0) {
       this.vy = this.jumpforce;
-      this.onGround = false;
     }
   },
 
@@ -88,20 +86,10 @@ export let character = {
     }
   },
 
-  // jump per spacebar or arrow up key
-  jumpInput() {
-    if ((keyIsDown(32) || keyIsDown(UP_ARROW)) && this.onGround) {
-      this.jump();
-    }
-  },
-
-  //gravity and ground collision
   update() {
-    // handle inputs
     this.handleInput();
-    this.jumpInput();
 
-    // aplly gravity
+    // apply gravity
     this.vy += this.gravity;
     this.y += this.vy;
 
@@ -112,7 +100,6 @@ export let character = {
     if (this.y + this.h >= height) {
       this.y = height - this.h;
       this.vy = 0;
-      this.onGround = true;
     }
 
     // screen wrapping

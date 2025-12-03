@@ -1,5 +1,5 @@
-import { character } from "./character";
-import platform from "platform";
+import { character } from "./character.js";
+import { platform } from "./platform.js";
 
 // Floor position
 const FloorY = 580;
@@ -39,12 +39,7 @@ function draw() {
   }
 
   //platform collision
-  platformCollision();
-
-  //character jumping
-  character.update();
-
-  //new platforms
+  platformCollision(platforms);
   newPlatform();
 }
 
@@ -61,22 +56,24 @@ function platformCollision() {
   for (let p of platforms) {
     let isXColliding =
       character.x + character.w >= p.x && character.x <= p.x + p.w;
-    let isYColliding =
-      character.y + character.h >= p.y &&
-      character.y + character.h <= p.y + 10 &&
-      character.vy > 0;
 
-    if (isXColliding && isYColliding) {
+    // check is falling and crossed platform
+    let wasAbove = character.y + character.h - character.vy <= p.y;
+    let isFalling = character.vy >= 0;
+
+    if (isXColliding && wasAbove && isFalling) {
       character.y = p.y - character.h;
-      character.vy = 0;
-      character.onGround = true;
+      character.vy = character.jumpforce;
     }
   }
 }
 
+// jump on space or up arrow
 function keyPressed() {
-  // Jump
-  if ((key === " " || keyCode === UP_ARROW) && character.onGround) {
+  if (key === " " || keyCode === UP_ARROW) {
     character.jump();
+    if (character.vy === 0) {
+      character.vy = character.jumpforce;
+    }
   }
 }
