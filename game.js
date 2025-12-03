@@ -13,12 +13,14 @@ function setup() {
 }
 
 let platforms = [
-  new platform(random(0, 280), 580, 80, 20),
-  new platform(random(0, 280), 480, 80, 20),
-  new platform(50, 380, 80, 20),
+    new platform(random(0, 280), 580, 80, 20),
+  new platform(random(0, 280), 505, 80, 20),
+  new platform(200, 430, 80, 20),
+  new platform(50, 355, 80, 20),
   new platform(150, 280, 80, 20),
-  new platform(random(0, 280), 180, 80, 20),
-  new platform(random(0, 280), 80, 80, 20),
+  new platform(100, 205, 80, 20),
+  new platform(50, 130, 80, 20),
+  new platform(200, 55, 80, 20),
 ];
 
 let x = 100;
@@ -56,7 +58,7 @@ function draw() {
     character.draw();
 
     //platform draw
-    if (character.y + character.h < 250) {
+    if (character.y + character.h < 400) {
       for (let p of platforms) {
         p.update();
       }
