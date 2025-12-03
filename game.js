@@ -89,17 +89,17 @@ function platformCollision() {
   }
 }
 
-// function keyPressed(){
-//     // Jump
-//     if(key==" " &&character.y + character.h === 300){
-//         character.y -= 150;
-//     }
+function keyPressed() {
+  // Jump
+  if (key == " " && character.y + character.h === 300) {
+    character.y -= 150;
+  }
 
-//     // Move left and right
-//     if(keyCode === LEFT_ARROW || key=="a"){
-//         character.x -= 20;
-//     }
-//     if(keyCode === RIGHT_ARROW || key=="d"){
-//         character.x += 20;
-//     }
-// }
+  // Move left and right
+  if (keyCode === LEFT_ARROW || key == "a") {
+    character.x -= 20;
+  }
+  if (keyCode === RIGHT_ARROW || key == "d") {
+    character.x += 20;
+  }
+}
