@@ -3,10 +3,10 @@ export let character = {
   y: 300,
   w: 50,
   h: 50,
-  vy:0,
-  gravity:0.3,
-  jumpforce:-11,
-  onGround:false,
+  vy: 0,
+  gravity: 0.3,
+  jumpforce: -11,
+  onGround: false,
 
   draw() {
     push();
@@ -24,7 +24,7 @@ export let character = {
       this.x + 25,
       this.y - this.h - 8,
       this.x + this.w,
-      this.h + 160,
+      this.y - this.h - 40,
       this.x + this.w,
       this.y - this.h - 8
     );
@@ -33,7 +33,7 @@ export let character = {
       this.x + 5,
       this.y - this.h - 8,
       this.x + this.w - 20,
-      this.h + 160,
+      this.y - this.h - 40,
       this.x + this.w - 20,
       this.y - this.h - 8
     );
@@ -68,18 +68,18 @@ export let character = {
   },
 
   //automatic jumping
-  jump(){
-    if(this.onGround){
+  jump() {
+    if (this.onGround) {
       this.vy = this.jumpforce;
       this.onGround = false;
     }
   },
 
   //gravity and ground collision
-  update(){
+  update() {
     this.vy += this.gravity;
     this.y += this.vy;
-    if(this.y + this.h >= height){
+    if (this.y + this.h >= height) {
       this.y = height - this.h;
       this.vy = 0;
       this.onGround = true;
