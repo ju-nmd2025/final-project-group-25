@@ -64,12 +64,12 @@ function draw() {
     let isXColliding =
       character.x + character.w >= p.x && character.x <= p.x + p.w;
     let isYColliding =
-      character.y -20 + character.h/2 >= p.y &&
-      character.y -20 + character.h/2 <= p.y + 20 &&
+      character.y -25 + character.h/2 >= p.y &&
+      character.y -25 + character.h/2 <= p.y + 20 &&
       character.vy > 0;
 
     if (isXColliding && isYColliding) {
-      character.y = p.y +20 - character.h/2;
+      character.y = p.y +25 - character.h/2;
       character.vy = 0;
       character.onGround = true;
       character.jump();
