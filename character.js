@@ -7,7 +7,7 @@ export let character = {
   vx: 0,
   speed: 3,
   gravity: 0.3,
-  jumpforce: -11,
+  jumpforce: -8,
   onGround: false,
 
   draw() {
@@ -70,8 +70,8 @@ export let character = {
   },
 
   //automatic jumping
-  jump(){
-    if(this.onGround){
+  jump() {
+    if (this.onGround) {
       this.vy = this.jumpforce;
       this.onGround = false;
     }
