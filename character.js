@@ -7,7 +7,7 @@ export let character = {
   vx: 0,
   speed: 3,
   gravity: 0.4,
-  jumpforce: -11,
+  jumpforce: -12,
 
   draw() {
     push();

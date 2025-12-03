@@ -4,6 +4,8 @@ import { platform } from "./platform.js";
 // Floor position
 const FloorY = 580;
 
+let cameraY = 0;
+
 function setup() {
   createCanvas(360, 580);
 }
@@ -23,6 +25,19 @@ let y = 100;
 function draw() {
   background(100, 100, 100);
 
+  //camera movement
+  if (character.y + character.h < 250) {
+    let delta = 250 - (character.y + character.h);
+    cameraY += delta;
+    character.y += delta;
+    for (let p of platforms) {
+      p.y += delta;
+    }
+  }
+
+  push();
+  translate(0, cameraY);
+
   character.update();
   character.draw();
 
@@ -30,6 +45,7 @@ function draw() {
   for (let p of platforms) {
     p.draw();
   }
+  pop();
 
   //platform movement
   if (character.y + character.h < 250) {
