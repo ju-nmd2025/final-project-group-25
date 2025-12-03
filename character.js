@@ -4,8 +4,10 @@ export let character = {
   w: 50,
   h: 50,
   vy: 0,
-  gravity: 0.3,
-  jumpforce: -11,
+  vx: 0,
+  speed: 3,
+  gravity: 0.4,
+  jumpforce: -7,
   onGround: false,
 
   draw() {
@@ -75,14 +77,50 @@ export let character = {
     }
   },
 
+  // movement left/right when key is pressed
+  handleInput() {
+    this.vx = 0;
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
+      this.vx = -this.speed;
+    }
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
+      this.vx = this.speed;
+    }
+  },
+
+  // jump per spacebar or arrow up key
+  jumpInput() {
+    if ((keyIsDown(32) || keyIsDown(UP_ARROW)) && this.onGround) {
+      this.jump();
+    }
+  },
+
   //gravity and ground collision
   update() {
+    // handle inputs
+    this.handleInput();
+    this.jumpInput();
+
+    // aplly gravity
     this.vy += this.gravity;
     this.y += this.vy;
+
+    // apply horizontal movement
+    this.x += this.vx;
+
+    // ground collision
     if (this.y + this.h >= height) {
       this.y = height - this.h;
       this.vy = 0;
       this.onGround = true;
+    }
+
+    // screen wrapping
+    if (this.x + this.w < 0) {
+      this.x = width;
+    }
+    if (this.x > width) {
+      this.x = 0;
     }
   },
 };
@@ -93,6 +131,7 @@ function setup() {
 
 function draw() {
   background(100, 100, 100);
+  character.update();
   character.draw();
 
   // Floor
