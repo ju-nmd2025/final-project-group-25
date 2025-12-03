@@ -47,40 +47,29 @@ function draw() {
   }
   pop();
 
-  //platform movement
-  if (character.y + character.h < 250) {
+  //platform collision
+  function platformCollision() {
     for (let p of platforms) {
-      p.update();
+      let isXColliding =
+        character.x + character.w >= p.x && character.x <= p.x + p.w;
+
+      // check is falling and crossed platform
+      let wasAbove = character.y + character.h - character.vy <= p.y;
+      let isFalling = character.vy > 0;
+
+      if (isXColliding && wasAbove && isFalling) {
+        character.y = p.y - character.h;
+        character.vy = character.jumpforce;
+      }
     }
   }
-
-  //platform collision
-  platformCollision(platforms);
-  newPlatform();
 }
 
+// Spawn new platforms
 function newPlatform() {
   if (platforms[0].y > height) {
     platforms.shift();
     platforms.push(new platform(random(0, 280), -20, 80, 20));
-  }
-}
-
-function platformCollision() {
-  character.onGround = false;
-
-  for (let p of platforms) {
-    let isXColliding =
-      character.x + character.w >= p.x && character.x <= p.x + p.w;
-
-    // check is falling and crossed platform
-    let wasAbove = character.y + character.h - character.vy <= p.y;
-    let isFalling = character.vy >= 0;
-
-    if (isXColliding && wasAbove && isFalling) {
-      character.y = p.y - character.h;
-      character.vy = character.jumpforce;
-    }
   }
 }
 
