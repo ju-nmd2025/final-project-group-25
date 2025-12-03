@@ -6,8 +6,9 @@ export let character = {
   vy: 0,
   vx: 0,
   speed: 3,
-  gravity: 0.4,
-  jumpforce: -12,
+  gravity: 0.3,
+  jumpforce: -11,
+  onGround: false,
 
   draw() {
     push();
@@ -68,10 +69,11 @@ export let character = {
     pop();
   },
 
-  //Manual jump function
-  jump() {
-    if (this.vy === 0) {
+  //automatic jumping
+  jump(){
+    if(this.onGround){
       this.vy = this.jumpforce;
+      this.onGround = false;
     }
   },
 
@@ -100,6 +102,7 @@ export let character = {
     if (this.y + this.h >= height) {
       this.y = height - this.h;
       this.vy = 0;
+      this.onGround = true;
     }
 
     // screen wrapping

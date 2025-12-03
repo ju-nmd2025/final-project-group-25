@@ -16,5 +16,6 @@ export class platform {
 
   update() {
     this.y += this.speed;
+    this.draw();
   }
 }
