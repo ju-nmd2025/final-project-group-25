@@ -4,6 +4,8 @@ import { platform } from "./platform.js";
 // Floor position
 const FloorY = 580;
 
+let score = 0;
+
 let cameraY = 0;
 
 function setup() {
@@ -24,6 +26,12 @@ let y = 100;
 
 function draw() {
   background(100, 100, 100);
+
+  // Score display
+  fill(255);
+  textSize(24);
+  textAlign(LEFT);
+  text("Score: " + Math.floor(score), 10, 30);
 
   //camera movement
   if (character.y + character.h < 250) {
@@ -71,6 +79,9 @@ function newPlatform() {
     platforms.shift();
     platforms.push(new platform(random(0, 280), -20, 80, 20));
   }
+
+  // Increase score
+  score = Math.max(score, -character.y + FloorY);
 }
 
 // jump on space or up arrow
