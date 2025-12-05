@@ -29,7 +29,7 @@ export class platform {
 
   update() {
     if (this.broken) {
-      this.fallSpeed += 0.4;
+      this.fallSpeed += 0.5;
       this.y += this.fallSpeed;
     } else {
       this.y += this.speed;
