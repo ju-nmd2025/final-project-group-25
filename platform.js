@@ -15,7 +15,7 @@ export class platform {
     push();
     if (this.type === "broken") {
       if (!this.broken) {
-        fill("darkred");
+        fill("red");
       } else {
         fill("brown");
       }

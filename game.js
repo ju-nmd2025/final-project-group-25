@@ -18,21 +18,21 @@ let platforms = [
     580,
     80,
     20,
-    random(1) < 0.1 ? "broken" : "normal"
+    random(1) < 0.3 ? "broken" : "normal"
   ),
   new platform(
     random(0, 280),
     505,
     80,
     20,
-    random(1) < 0.1 ? "broken" : "normal"
+    random(1) < 0.3 ? "broken" : "normal"
   ),
-  new platform(200, 430, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
-  new platform(50, 355, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
-  new platform(150, 280, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
-  new platform(100, 205, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
-  new platform(50, 130, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
-  new platform(200, 55, 80, 20, random(1) < 0.1 ? "broken" : "normal"),
+  new platform(200, 430, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(50, 355, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(150, 280, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(100, 205, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(50, 130, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(200, 55, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
 ];
 
 let x = 100;
@@ -136,10 +136,30 @@ function newPlatform() {
   if (platforms[0].y > height) {
     platforms.shift();
 
-    let isBroken = random(1) < 0.1 ? "broken" : "normal";
-    platforms.push(
-      new platform(random(0, 280), -20, 80, 20, isBroken ? "broken" : "normal")
-    );
+    let type = random(1) < 0.3 ? "broken" : "normal";
+    let newX = random(0, 280);
+    let tries = 0;
+
+    while (tries < 10) {
+      let candidateX = random(0, 280);
+      let tooClose = false;
+
+      for (let i = 0; i < platforms.length; i++) {
+        if (Math.abs(platforms[i].x - candidateX) < 100) {
+          tooClose = true;
+          break;
+        }
+      }
+
+      if (!tooClose) {
+        newX = candidateX;
+        break;
+      }
+
+      tries++;
+    }
+
+    platforms.push(new platform(random(0, 280), -20, 80, 20, type));
   }
 
   // Increase score
