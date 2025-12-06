@@ -62,6 +62,7 @@ function draw() {
       for (let p of platforms) {
         p.update();
       }
+      score += 0.5; // Increase score as character ascends
     } else {
       for (let p of platforms) {
         p.draw();
@@ -132,9 +133,9 @@ function newPlatform() {
   }
 
   // Increase score
-  let currentHeight = FloorY - character.y;
-  maxScore = Math.max(maxScore, currentHeight);
-  score = Math.floor(maxScore);
+  // let currentHeight = FloorY - character.y;
+  // maxScore = Math.max(maxScore, currentHeight);
+  // score = Math.floor(maxScore);
 
   if(character.y>FloorY){
     // Game over screen
