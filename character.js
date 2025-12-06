@@ -99,11 +99,11 @@ export let character = {
     this.x += this.vx;
 
     // ground collision
-    if (this.y + this.h >= height) {
-      this.y = height - this.h;
-      this.vy = 0;
-      this.onGround = true;
-    }
+     if (this.y >= height) {
+       this.y = height - this.h;
+       this.vy = 0;
+       this.onGround = true;
+     }
 
     // screen wrapping
     if (this.x + this.w < 0) {

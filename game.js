@@ -85,6 +85,23 @@ function mousePressed() {
       gameStarted = true;
     }
   }
+  // Restart game on game over screen click
+  else if (character.y > FloorY) {
+    if (
+      mouseX >= width / 2 - 60 &&
+      mouseX <= width / 2 + 60 &&
+      mouseY >= height / 2 + 20 &&
+      mouseY <= height / 2 + 70
+    ) {
+      // Reset character position and score 
+      character.x = 100;
+      character.y = 100;
+      character.vy = 0;
+      score = 0;
+      maxScore = 0;
+      gameStarted = true;
+    }
+  }
 }
 
 //platform collision
@@ -118,4 +135,19 @@ function newPlatform() {
   let currentHeight = FloorY - character.y;
   maxScore = Math.max(maxScore, currentHeight);
   score = Math.floor(maxScore);
+
+  if(character.y>FloorY){
+    // Game over screen
+    fill(200,0,0);
+    rect(width / 2 - 60, height / 2 + 20, 120, 50, 10);
+    fill(255);
+    textSize(24);
+    text("Restart", width / 2 - 40, height / 2 + 53);
+    fill(255, 0, 0);
+    textSize(32);
+    textAlign(CENTER);
+    text("Game Over", width / 2, height / 2 - 40);
+    textSize(24);
+    text("Final Score: " + Math.floor(score), width / 2, height / 2);
+  }
 }
