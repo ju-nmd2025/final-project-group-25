@@ -71,6 +71,11 @@ function draw() {
     pop();
 
     newPlatform();
+
+    // Check for game over
+    if (character.y > FloorY) {
+      gameOver();
+    }
   }
 }
 
@@ -131,24 +136,18 @@ function newPlatform() {
     platforms.shift();
     platforms.push(new platform(random(0, 280), -20, 80, 20));
   }
+}
 
-  // Increase score
-  // let currentHeight = FloorY - character.y;
-  // maxScore = Math.max(maxScore, currentHeight);
-  // score = Math.floor(maxScore);
-
-  if(character.y>FloorY){
-    // Game over screen
-    fill(200,0,0);
-    rect(width / 2 - 60, height / 2 + 20, 120, 50, 10);
-    fill(255);
-    textSize(24);
-    text("Restart", width / 2 - 40, height / 2 + 53);
-    fill(255, 0, 0);
-    textSize(32);
-    textAlign(CENTER);
-    text("Game Over", width / 2, height / 2 - 40);
-    textSize(24);
-    text("Final Score: " + Math.floor(score), width / 2, height / 2);
-  }
+// Game over screen
+function gameOver() {
+  fill(255, 0, 0);
+  textSize(32);
+  textAlign(CENTER);
+  text("Game Over", width / 2, height / 2 - 40); 
+  textSize(24);
+  text("Final Score: " + Math.floor(score), width / 2, height / 2);
+  fill(200, 0, 0);
+  rect(width / 2 - 60, height / 2 + 20, 120, 50, 10);
+  fill(255);
+  text("Restart", width / 2, height / 2 + 52);
 }
