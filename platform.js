@@ -8,7 +8,7 @@ export class platform {
 
     this.type = type;
     this.broken = false;
-    this.fallSpeed = 0;
+   // this.fallSpeed = 0;
   }
 
   draw() {
@@ -29,11 +29,9 @@ export class platform {
 
   update() {
     if (this.broken) {
-      this.fallSpeed += 0.5;
-      this.y += this.fallSpeed;
-    } else {
+      this.x = 0-this.w; // Move off-screen
+    } 
       this.y += this.speed;
-    }
     this.draw();
   }
   break() {
