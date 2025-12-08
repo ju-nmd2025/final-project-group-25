@@ -13,14 +13,26 @@ function setup() {
 }
 
 let platforms = [
-    new platform(random(0, 280), 580, 80, 20),
-  new platform(random(0, 280), 505, 80, 20),
-  new platform(200, 430, 80, 20),
-  new platform(50, 355, 80, 20),
-  new platform(150, 280, 80, 20),
-  new platform(100, 205, 80, 20),
-  new platform(50, 130, 80, 20),
-  new platform(200, 55, 80, 20),
+  new platform(
+    random(0, 280),
+    580,
+    80,
+    20,
+    random(1) < 0.3 ? "broken" : "normal"
+  ),
+  new platform(
+    random(0, 280),
+    505,
+    80,
+    20,
+    random(1) < 0.3 ? "broken" : "normal"
+  ),
+  new platform(200, 430, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(50, 355, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(150, 280, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(100, 205, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(50, 130, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(200, 55, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
 ];
 
 let x = 100;
@@ -113,15 +125,27 @@ function mousePressed() {
 //platform collision
 function platformCollision() {
   character.onGround = false;
+
   for (let p of platforms) {
     let isXColliding =
       character.x + character.w >= p.x && character.x <= p.x + p.w;
+
     let isYColliding =
       character.y - 25 + character.h / 2 >= p.y &&
       character.y - 25 + character.h / 2 <= p.y + 20 &&
       character.vy > 0;
 
     if (isXColliding && isYColliding) {
+      // If platform is broken, break it
+      if (p.type === "broken") {
+        character.y = p.y + 25 - character.h / 2;
+        character.vy = 0;
+        character.onGround = true;
+        character.jump();
+        p.break();
+        continue;
+      }
+      // Normal platform behavior
       character.y = p.y + 25 - character.h / 2;
       character.vy = 0;
       character.onGround = true;
@@ -134,7 +158,31 @@ function platformCollision() {
 function newPlatform() {
   if (platforms[0].y > height) {
     platforms.shift();
-    platforms.push(new platform(random(0, 280), -20, 80, 20));
+
+    let type = random(1) < 0.3 ? "broken" : "normal";
+    // let newX = random(0, 280);
+    // let tries = 0;
+
+    // while (tries < 10) {
+    //   let candidateX = random(0, 280);
+    //   let tooClose = false;
+
+    //   for (let i = 0; i < platforms.length; i++) {
+    //     if (Math.abs(platforms[i].x - candidateX) < 100) {
+    //       tooClose = true;
+    //       break;
+    //     }
+    //   }
+
+    //   if (!tooClose) {
+    //     newX = candidateX;
+    //     break;
+    //   }
+
+    //   tries++;
+    // }
+
+    platforms.push(new platform(random(0, 280), -20, 80, 20, type));
   }
 }
 

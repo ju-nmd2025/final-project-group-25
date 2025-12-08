@@ -1,21 +1,42 @@
 export class platform {
-  constructor(x, y, w, h) {
+  constructor(x, y, w, h, type = "normal") {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.speed = 3;
+
+    this.type = type;
+    this.broken = false;
+   // this.fallSpeed = 0;
   }
 
   draw() {
     push();
-    fill("blue");
+    if (this.type === "broken") {
+      if (!this.broken) {
+        fill("red");
+      } else {
+        fill("brown");
+      }
+    } else {
+      fill("blue");
+    }
+
     rect(this.x, this.y, this.w, this.h);
     pop();
   }
 
   update() {
-    this.y += this.speed;
+    if (this.broken) {
+      this.x = 0-this.w; // Move off-screen
+    } 
+      this.y += this.speed;
     this.draw();
+  }
+  break() {
+    if (!this.broken) {
+      this.broken = true;
+    }
   }
 }
