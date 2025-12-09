@@ -1,5 +1,6 @@
 import { character } from "./character.js";
 import { platform } from "./platform.js";
+import { Background } from "./background.js";
 
 // Floor position
 const FloorY = 580;
@@ -10,6 +11,7 @@ let gameStarted = false; // Track if the game has started
 
 function setup() {
   createCanvas(360, 580);
+  bg = new Background();
 }
 
 let platforms = [
@@ -37,7 +39,7 @@ let x = 100;
 let y = 100;
 
 function draw() {
-  background(100, 100, 100);
+  bg.draw();
 
   if (!gameStarted) {
     // Display start screen
@@ -79,6 +81,12 @@ function draw() {
       }
     }
     pop();
+
+    for (let p of platforms) {
+      if (p.type === "moving") {
+        p.movingUpdate();
+      }
+    }
 
     newPlatform();
 
@@ -166,27 +174,6 @@ function newPlatform() {
     } else {
       type = "normal";
     }
-    // let newX = random(0, 280);
-    // let tries = 0;
-
-    // while (tries < 10) {
-    //   let candidateX = random(0, 280);
-    //   let tooClose = false;
-
-    //   for (let i = 0; i < platforms.length; i++) {
-    //     if (Math.abs(platforms[i].x - candidateX) < 100) {
-    //       tooClose = true;
-    //       break;
-    //     }
-    //   }
-
-    //   if (!tooClose) {
-    //     newX = candidateX;
-    //     break;
-    //   }
-
-    //   tries++;
-    // }
 
     platforms.push(new platform(random(0, 280), -20, 80, 20, type));
   }
