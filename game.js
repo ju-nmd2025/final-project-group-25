@@ -13,28 +13,26 @@ function setup() {
 }
 
 let platforms = [
-  new platform(
-    random(0, 280),
-    580,
-    80,
-    20,
-    random(1) < 0.3 ? "broken" : "normal"
-  ),
-  new platform(
-    random(0, 280),
-    505,
-    80,
-    20,
-    random(1) < 0.3 ? "broken" : "normal"
-  ),
-  new platform(200, 430, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
-  new platform(50, 355, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
-  new platform(150, 280, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
-  new platform(100, 205, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
-  new platform(50, 130, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
-  new platform(200, 55, 80, 20, random(1) < 0.3 ? "broken" : "normal"),
+  new platform(random(0, 280), 580, 80, 20, choosePlatformType()),
+  new platform(random(0, 280), 505, 80, 20, choosePlatformType()),
+  new platform(200, 430, 80, 20, choosePlatformType()),
+  new platform(50, 355, 80, 20, choosePlatformType()),
+  new platform(150, 280, 80, 20, choosePlatformType()),
+  new platform(100, 205, 80, 20, choosePlatformType()),
+  new platform(50, 130, 80, 20, choosePlatformType()),
+  new platform(200, 55, 80, 20, choosePlatformType()),
 ];
 
+function choosePlatformType() {
+  let r = random(1);
+  if (r < 0.15) {
+    return "moving";
+  } else if (r < 0.3) {
+    return "broken";
+  } else {
+    return "normal";
+  }
+}
 let x = 100;
 let y = 100;
 
@@ -111,7 +109,7 @@ function mousePressed() {
       mouseY >= height / 2 + 20 &&
       mouseY <= height / 2 + 70
     ) {
-      // Reset character position and score 
+      // Reset character position and score
       character.x = 100;
       character.y = 100;
       character.vy = 0;
@@ -159,7 +157,15 @@ function newPlatform() {
   if (platforms[0].y > height) {
     platforms.shift();
 
-    let type = random(1) < 0.3 ? "broken" : "normal";
+    let r = random(1);
+    let type;
+    if (r < 0.15) {
+      type = "moving";
+    } else if (r < 0.3) {
+      type = "broken";
+    } else {
+      type = "normal";
+    }
     // let newX = random(0, 280);
     // let tries = 0;
 
@@ -191,7 +197,7 @@ function gameOver() {
   fill(255, 0, 0);
   textSize(32);
   textAlign(CENTER);
-  text("Game Over", width / 2, height / 2 - 40); 
+  text("Game Over", width / 2, height / 2 - 40);
   textSize(24);
   text("Final Score: " + Math.floor(score), width / 2, height / 2);
   fill(200, 0, 0);
