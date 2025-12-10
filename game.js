@@ -36,8 +36,6 @@ function choosePlatformType() {
     return "normal";
   }
 }
-let x = 100;
-let y = 100;
 
 function draw() {
   bg.draw();
