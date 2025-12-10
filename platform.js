@@ -8,6 +8,7 @@ export class platform {
 
     this.type = type;
     this.broken = false;
+    this.isBrokenFalling = false;
     // this.fallSpeed = 0;
   }
 
@@ -18,15 +19,28 @@ export class platform {
         fill(120, 70, 200);
         rect(this.x, this.y, this.w, this.h);
 
-        stroke(100, 30, 50);
-        strokeWeight(2);
+        stroke(75, 0, 130);
+        strokeWeight(1);
         let crackX = this.x + this.w / 2;
         line(crackX, this.y, crackX, this.y + this.h);
         noStroke();
       } else {
-        fill(150, 70, 90);
-        rect(this.leftX, this.y, this.w / 2, this.h);
-        rect(this.rightX, this.y, this.w / 2, this.h);
+        fill(75, 0, 130);
+        //left half
+        push();
+        translate(this.leftX + this.w / 4, this.y + this.h / 2);
+        rotate(radians(35));
+        rectMode(CENTER);
+        rect(0, 0, this.w / 2, this.h);
+        pop();
+
+        //right half
+        push();
+        translate(this.rightX + this.w / 4, this.y + this.h / 2);
+        rotate(radians(-35));
+        rectMode(CENTER);
+        rect(0, 0, this.w / 2, this.h);
+        pop();
       }
     } else if (this.type === "moving") {
       fill(200, 100, 220);
@@ -60,8 +74,34 @@ export class platform {
 
   brokenUpdate() {
     this.y += this.speed;
-    if (this.broken) {
-      this.x = -this.w; // Move off-screen
+
+    if (this.broken && !this.isBrokenFalling) {
+      this.breakTimer = (this.breakTimer || 0) + 1;
+      if (this.breakTimer > 20) {
+        this.isBrokenFalling = true;
+      }
+
+      this.leftX = this.x;
+      this.rightX = this.x + this.w / 2;
+      this.leftY = this.y;
+      this.rightY = this.y;
+      this.fallSpeed = 0;
+    } else if (this.isBrokenFalling) {
+      this.fallSpeed += 0.5;
+      this.leftY += this.fallSpeed;
+      this.rightY += this.fallSpeed;
+      this.leftX -= 2;
+      this.rightX += 2;
+
+      if (
+        this.leftY - this.h / 2 > height &&
+        this.rightY - this.h / 2 > height
+      ) {
+        this.isBrokenFalling = false;
+        this.broken = false;
+        // Move off-screen
+        this.x = -this.w;
+      }
     }
   }
 
