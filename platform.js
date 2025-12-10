@@ -14,14 +14,27 @@ export class platform {
   draw() {
     push();
     if (this.type === "broken") {
-      fill(this.broken ? color(150, 70, 90) : color(180, 70, 120));
+      if (!this.broken) {
+        fill(120, 70, 200);
+        rect(this.x, this.y, this.w, this.h);
+
+        stroke(100, 30, 50);
+        strokeWeight(2);
+        let crackX = this.x + this.w / 2;
+        line(crackX, this.y, crackX, this.y + this.h);
+        noStroke();
+      } else {
+        fill(150, 70, 90);
+        rect(this.leftX, this.y, this.w / 2, this.h);
+        rect(this.rightX, this.y, this.w / 2, this.h);
+      }
     } else if (this.type === "moving") {
       fill(200, 100, 220);
+      rect(this.x, this.y, this.w, this.h);
     } else {
       fill(100, 200, 180);
+      rect(this.x, this.y, this.w, this.h);
     }
-
-    rect(this.x, this.y, this.w, this.h);
     pop();
   }
 
@@ -35,9 +48,6 @@ export class platform {
         this.brokenUpdate();
         break;
 
-      // case "moving":
-      //   this.movingUpdate();
-      //   break;
       default:
         this.y += this.speed;
         break;
