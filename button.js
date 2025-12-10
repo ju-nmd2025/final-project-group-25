@@ -22,16 +22,4 @@ draw() {
     text(this.label, this.x + this.w / 2, this.y + this.h / 2);
     pop();
 }
-
-// handleClick(mouseX, mouseY) {
-//     if (
-//         mouseX >= this.x &&
-//         mouseX <= this.x + this.w &&
-//         mouseY >= this.y &&
-//         mouseY <= this.y + this.h
-//     ) {
-//         return true; // Button was clicked
-//     }  
-//     return false; // Button was not clicked
-// }
 }

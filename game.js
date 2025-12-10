@@ -40,17 +40,7 @@ function draw() {
     // start button
     let startButton = new button(width / 2 - 60, height / 2, 120, 50, "Start");
     startButton.draw();
-    // Check for button click in mousePressed function
-    if (mousePressed) {
-      if (startButton.handleClick(mouseX, mouseY)) {
-        gameStarted = true;
-      }
-    }
-    // fill(200, 0, 0);
-    // rect(width / 2 - 60, height / 2, 120, 50, 10);
-    // fill(255);
-    // textSize(24);
-    // text("Start", width / 2, height / 2 + 32);
+    
   } else {
     // Game is running
 
