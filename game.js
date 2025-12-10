@@ -159,27 +159,6 @@ function newPlatform() {
     platforms.shift();
 
     let type = random(1) < 0.3 ? "broken" : "normal";
-    // let newX = random(0, 280);
-    // let tries = 0;
-
-    // while (tries < 10) {
-    //   let candidateX = random(0, 280);
-    //   let tooClose = false;
-
-    //   for (let i = 0; i < platforms.length; i++) {
-    //     if (Math.abs(platforms[i].x - candidateX) < 100) {
-    //       tooClose = true;
-    //       break;
-    //     }
-    //   }
-
-    //   if (!tooClose) {
-    //     newX = candidateX;
-    //     break;
-    //   }
-
-    //   tries++;
-    // }
 
     platforms.push(new platform(random(0, 280), -20, 80, 20, type));
   }
