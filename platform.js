@@ -73,21 +73,6 @@ export class platform {
         }
         break;
     }
-    // this.y += this.speed;
-
-    // if (this.startX === undefined) this.startX = this.x;
-    // if (this.moveSpeed === undefined) this.moveSpeed = 2;
-    // if (this.moveDirection === undefined) this.moveDirection = 1;
-    // if (this.moveRange === undefined) this.moveRange = 60;
-
-    // this.x += this.moveSpeed * this.moveDirection;
-
-    // if (
-    //   this.x > this.startX + this.moveRange ||
-    //   this.x < this.startX - this.moveRange
-    // ) {
-    //   this.moveDirection *= -1; // Reverse direction
-    // }
   }
 
   break() {
