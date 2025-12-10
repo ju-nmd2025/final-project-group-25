@@ -14,11 +14,11 @@ export class platform {
   draw() {
     push();
     if (this.type === "broken") {
-      fill(this.broken ? "brown" : "red");
+      fill(this.broken ? color(150, 70, 90) : color(180, 70, 120));
     } else if (this.type === "moving") {
-      fill("green");
+      fill(200, 100, 220);
     } else {
-      fill("blue");
+      fill(100, 200, 180);
     }
 
     rect(this.x, this.y, this.w, this.h);
