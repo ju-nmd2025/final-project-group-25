@@ -48,7 +48,7 @@ export let character = {
 
     // Head
     fill(110, 235, 90);
-    ellipse(this.x + this.w / 2, this.y - this.h, this.w, this.h * 0.8);
+    ellipse(this.x + this.w / 2, this.y - this.h, this.w + 1, this.h * 0.8);
 
     // Body
     fill(110, 235, 90);
@@ -64,7 +64,7 @@ export let character = {
 
     // Headband
     fill(210, 0, 40);
-    rect(this.x - 1, this.y - this.h - 8, this.w + 4, 12);
+    rect(this.x - 0.5, this.y - 60, this.w + 2, this.h / 3.2, 2, 2, 2, 2);
 
     pop();
   },
