@@ -1,5 +1,6 @@
 import { character } from "./character.js";
 import { platform } from "./platform.js";
+import { button } from "./button.js";
 
 // Floor position
 const FloorY = 580;
@@ -37,11 +38,19 @@ function draw() {
     text("Ninja Jump", width / 2, height / 2 - 40);
 
     // start button
-    fill(200, 0, 0);
-    rect(width / 2 - 60, height / 2, 120, 50, 10);
-    fill(255);
-    textSize(24);
-    text("Start", width / 2, height / 2 + 32);
+    let startButton = new button(width / 2 - 60, height / 2, 120, 50, "Start");
+    startButton.draw();
+    // Check for button click in mousePressed function
+    if (mousePressed) {
+      if (startButton.handleClick(mouseX, mouseY)) {
+        gameStarted = true;
+      }
+    }
+    // fill(200, 0, 0);
+    // rect(width / 2 - 60, height / 2, 120, 50, 10);
+    // fill(255);
+    // textSize(24);
+    // text("Start", width / 2, height / 2 + 32);
   } else {
     // Game is running
 
