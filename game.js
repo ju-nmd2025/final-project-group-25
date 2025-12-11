@@ -189,3 +189,15 @@ function gameOver() {
   fill(255);
   text("Restart", width / 2, height / 2 + 52);
 }
+
+window.setup = setup;
+
+window.draw = draw;
+
+window.addEventListener("click", function (event) {
+    mousePressed();
+});
+
+window.addEventListener("keydown", function (event) {
+    keyPressed();
+});
