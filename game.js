@@ -10,12 +10,13 @@ let score = 0;
 let maxScore = 0;
 let gameStarted = false; // Track if the game has started
 
+let bg;
+let platforms;
+
 function setup() {
   createCanvas(360, 580);
   bg = new Background();
-}
-
-let platforms = [
+  platforms = [
   new platform(random(0, 280), 580, 80, 20, choosePlatformType()),
   new platform(random(0, 280), 505, 80, 20, choosePlatformType()),
   new platform(200, 430, 80, 20, choosePlatformType()),
@@ -25,6 +26,9 @@ let platforms = [
   new platform(50, 130, 80, 20, choosePlatformType()),
   new platform(200, 55, 80, 20, choosePlatformType()),
 ];
+
+}
+
 
 function choosePlatformType() {
   let r = random(1);
