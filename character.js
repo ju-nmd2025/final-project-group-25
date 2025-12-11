@@ -1,4 +1,4 @@
-export let character = {
+let character = {
   x: 50,
   y: 300,
   w: 50,
@@ -120,3 +120,5 @@ function draw() {
   // Floor
   line(0, 350, width, 350);
 }
+
+export { character }

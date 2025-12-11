@@ -1,4 +1,4 @@
-export class Background {
+class Background {
   constructor() {
     this.stars = [];
 
