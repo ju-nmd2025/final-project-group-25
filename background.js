@@ -59,3 +59,5 @@ export class Background {
     }
   }
 }
+
+export { Background }
